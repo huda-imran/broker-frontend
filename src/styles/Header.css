@@ -1,0 +1,137 @@
+/* Header Container */
+
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 20px;
+    background-color: #2A2A2A;
+    /* Dark Gray */
+    border-bottom: 1px solid var(--border-color);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.6);
+}
+
+
+/* Logo */
+
+.logo h2 {
+    font-size: 20px;
+    color: var(--text-color);
+    font-weight: 600;
+}
+
+
+/* Navigation Menu */
+
+.nav-menu {
+    display: flex;
+    gap: 20px;
+    /* Space between links */
+}
+
+
+/* Navigation Links */
+
+.nav-link {
+    color: var(--text-color);
+    font-size: 16px;
+    cursor: pointer;
+    transition: color 0.3s;
+    padding: 5px 10px;
+    /* Padding for clickable area */
+    border-radius: 5px;
+}
+
+.nav-link:hover {
+    color: var(--accent-color);
+    /* Highlight effect */
+    background-color: #3A3A3A;
+}
+
+
+/* Wallet Container */
+
+.wallet-container {
+    position: relative;
+    /* Position the dropdown */
+}
+
+
+/* Dropdown Menu */
+
+.dropdown-menu {
+    position: absolute;
+    right: 0;
+    /* Align to the right of the button */
+    top: 40px;
+    /* Position below the button */
+    background: var(--background-color);
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.6);
+    z-index: 100;
+    width: 220px;
+    /* Adjust width */
+    padding: 10px;
+}
+
+
+/* Dropdown Item */
+
+.dropdown-item {
+    padding: 10px;
+    font-size: 14px;
+    color: var(--text-color);
+    border-bottom: 1px solid var(--border-color);
+    font-family: var(--font-family);
+    word-break: break-word;
+    /* Break long addresses if needed */
+}
+
+.dropdown-item:last-child {
+    border-bottom: none;
+}
+
+
+/* Logout Button */
+
+.logout-btn {
+    background-color: transparent;
+    /* Match background */
+    color: var(--accent-color);
+    border: 1px solid var(--accent-color);
+    padding: 8px 12px;
+    width: 100%;
+    text-align: center;
+    border-radius: 4px;
+    font-size: 14px;
+    cursor: pointer;
+    font-family: var(--font-family);
+    transition: all 0.3s ease-in-out;
+}
+
+.logout-btn:hover {
+    background-color: var(--hover-accent-color);
+    color: var(--text-color);
+    border-color: var(--hover-accent-color);
+}
+
+
+/* Mobile Responsiveness */
+
+@media (max-width: 768px) {
+    .header {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 10px;
+    }
+    .nav-menu {
+        flex-direction: column;
+        gap: 10px;
+        margin-top: 10px;
+    }
+    .wallet-btn {
+        margin-top: 10px;
+        width: 100%;
+    }
+}

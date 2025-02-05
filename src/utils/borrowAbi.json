@@ -1,0 +1,263 @@
+{
+    "methods": {
+        "setBorrowRate": {
+            "argument": "common.uint64",
+            "return": "",
+            "description": "Set Lending Rate (ROI %)",
+            "entry_point": 207378433,
+            "read_only": false,
+            "entry-point": "0x0c5c5801",
+            "read-only": false
+        },
+        "getBorrowRate": {
+            "argument": "",
+            "return": "common.uint64",
+            "description": "Get Borrow Rate (ROI %)",
+            "entry_point": 1745461850,
+            "read_only": true,
+            "entry-point": "0x6809a25a",
+            "read-only": true
+        },
+        "borrowFunds": {
+            "argument": "borrow.borrow_arguments",
+            "return": "borrow.borrow_result",
+            "description": "Borrow money",
+            "entry_point": 2954086818,
+            "read_only": false,
+            "entry-point": "0xb013c9a2",
+            "read-only": false
+        },
+        "repayFunds": {
+            "argument": "borrow.repay_arguments",
+            "return": "borrow.repay_result",
+            "description": "Repay borrowed KOIN",
+            "entry_point": 433785469,
+            "read_only": false,
+            "entry-point": "0x19db0a7d",
+            "read-only": false
+        },
+        "claimCollateral": {
+            "argument": "borrow.claim_collateral_arguments",
+            "return": "borrow.claim_collateral_result",
+            "description": "Claim collateral (forfeiture after 60 days)",
+            "entry_point": 1511978358,
+            "read_only": false,
+            "entry-point": "0x5a1ef576",
+            "read-only": false
+        }
+    },
+    "types": "CoQDCidrb2lub3Nib3gtcHJvdG8vbWFuYXNoYXJlci9jb21tb24ucHJvdG8SBmNvbW1vbhoUa29pbm9zL29wdGlvbnMucHJvdG8iGwoDc3RyEhQKBXZhbHVlGAEgASgJUgV2YWx1ZSIeCgZ1aW50MzISFAoFdmFsdWUYASABKA1SBXZhbHVlIiIKBnVpbnQ2NBIYCgV2YWx1ZRgBIAEoBEICMAFSBXZhbHVlIh0KBWJvb2xlEhQKBXZhbHVlGAEgASgIUgV2YWx1ZSIlCgdhZGRyZXNzEhoKBXZhbHVlGAEgASgMQgSAtRgGUgV2YWx1ZSJdCglsaXN0X2FyZ3MSGgoFc3RhcnQYASABKAxCBIC1GAZSBXN0YXJ0EhQKBWxpbWl0GAIgASgFUgVsaW1pdBIeCgpkZXNjZW5kaW5nGAMgASgIUgpkZXNjZW5kaW5nIi0KCWFkZHJlc3NlcxIgCghhY2NvdW50cxgBIAMoDEIEgLUYBlIIYWNjb3VudHNiBnByb3RvMwqABQoMYm9ycm93LnByb3RvEgZib3Jyb3caFGtvaW5vcy9vcHRpb25zLnByb3RvIsYBChBib3Jyb3dfYXJndW1lbnRzEiAKCGJvcnJvd2VyGAEgASgMQgSAtRgGUghib3Jyb3dlchIeCgpjb2xsYXRlcmFsGAIgASgEUgpjb2xsYXRlcmFsEiMKDWJvcnJvd19hbW91bnQYAyABKARSDGJvcnJvd0Ftb3VudBIaCghkZWFkbGluZRgEIAEoBFIIZGVhZGxpbmUSLwoQY29sbGF0ZXJhbF90b2tlbhgFIAEoDEIEgLUYBlIPY29sbGF0ZXJhbFRva2VuIkoKDWJvcnJvd19yZXN1bHQSGAoHc3VjY2VzcxgBIAEoCFIHc3VjY2VzcxIfCgtjb250cmFjdF9pZBgCIAEoDFIKY29udHJhY3RJZCJyCg9yZXBheV9hcmd1bWVudHMSIAoIYm9ycm93ZXIYASABKAxCBIC1GAZSCGJvcnJvd2VyEhwKCXJlcGF5bWVudBgCIAEoBFIJcmVwYXltZW50Eh8KC2NvbnRyYWN0X2lkGAMgASgMUgpjb250cmFjdElkIigKDHJlcGF5X3Jlc3VsdBIYCgdzdWNjZXNzGAEgASgIUgdzdWNjZXNzIj0KGmNsYWltX2NvbGxhdGVyYWxfYXJndW1lbnRzEh8KC2NvbnRyYWN0X2lkGAEgASgMUgpjb250cmFjdElkIjMKF2NsYWltX2NvbGxhdGVyYWxfcmVzdWx0EhgKB3N1Y2Nlc3MYASABKAhSB3N1Y2Nlc3MiIwoLYm9ycm93X3JhdGUSFAoFdmFsdWUYASABKARSBXZhbHVlYgZwcm90bzM=",
+    "koilib_types": {
+        "nested": {
+            "common": {
+                "nested": {
+                    "str": {
+                        "fields": {
+                            "value": {
+                                "type": "string",
+                                "id": 1
+                            }
+                        }
+                    },
+                    "uint32": {
+                        "fields": {
+                            "value": {
+                                "type": "uint32",
+                                "id": 1
+                            }
+                        }
+                    },
+                    "uint64": {
+                        "fields": {
+                            "value": {
+                                "type": "uint64",
+                                "id": 1,
+                                "options": {
+                                    "jstype": "JS_STRING"
+                                }
+                            }
+                        }
+                    },
+                    "boole": {
+                        "fields": {
+                            "value": {
+                                "type": "bool",
+                                "id": 1
+                            }
+                        }
+                    },
+                    "address": {
+                        "fields": {
+                            "value": {
+                                "type": "bytes",
+                                "id": 1,
+                                "options": {
+                                    "(koinos.btype)": "ADDRESS"
+                                }
+                            }
+                        }
+                    },
+                    "list_args": {
+                        "fields": {
+                            "start": {
+                                "type": "bytes",
+                                "id": 1,
+                                "options": {
+                                    "(koinos.btype)": "ADDRESS"
+                                }
+                            },
+                            "limit": {
+                                "type": "int32",
+                                "id": 2
+                            },
+                            "descending": {
+                                "type": "bool",
+                                "id": 3
+                            }
+                        }
+                    },
+                    "addresses": {
+                        "fields": {
+                            "accounts": {
+                                "rule": "repeated",
+                                "type": "bytes",
+                                "id": 1,
+                                "options": {
+                                    "(koinos.btype)": "ADDRESS"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "koinos": {
+                "options": {
+                    "go_package": "github.com/koinos/koinos-proto-golang/koinos"
+                },
+                "nested": {
+                    "bytes_type": {
+                        "values": {
+                            "BASE64": 0,
+                            "BASE58": 1,
+                            "HEX": 2,
+                            "BLOCK_ID": 3,
+                            "TRANSACTION_ID": 4,
+                            "CONTRACT_ID": 5,
+                            "ADDRESS": 6
+                        }
+                    },
+                    "_btype": {
+                        "oneof": [
+                            "btype"
+                        ]
+                    },
+                    "btype": {
+                        "type": "bytes_type",
+                        "id": 50000,
+                        "extend": "google.protobuf.FieldOptions",
+                        "options": {
+                            "proto3_optional": true
+                        }
+                    }
+                }
+            },
+            "borrow": {
+                "nested": {
+                    "borrow_arguments": {
+                        "fields": {
+                            "borrower": {
+                                "type": "bytes",
+                                "id": 1,
+                                "options": {
+                                    "(koinos.btype)": "ADDRESS"
+                                }
+                            },
+                            "collateral": {
+                                "type": "uint64",
+                                "id": 2
+                            },
+                            "borrow_amount": {
+                                "type": "uint64",
+                                "id": 3
+                            },
+                            "deadline": {
+                                "type": "uint64",
+                                "id": 4
+                            },
+                            "collateral_token": {
+                                "type": "bytes",
+                                "id": 5,
+                                "options": {
+                                    "(koinos.btype)": "ADDRESS"
+                                }
+                            }
+                        }
+                    },
+                    "borrow_result": {
+                        "fields": {
+                            "success": {
+                                "type": "bool",
+                                "id": 1
+                            },
+                            "contract_id": {
+                                "type": "bytes",
+                                "id": 2
+                            }
+                        }
+                    },
+                    "repay_arguments": {
+                        "fields": {
+                            "borrower": {
+                                "type": "bytes",
+                                "id": 1,
+                                "options": {
+                                    "(koinos.btype)": "ADDRESS"
+                                }
+                            },
+                            "repayment": {
+                                "type": "uint64",
+                                "id": 2
+                            },
+                            "contract_id": {
+                                "type": "bytes",
+                                "id": 3
+                            }
+                        }
+                    },
+                    "repay_result": {
+                        "fields": {
+                            "success": {
+                                "type": "bool",
+                                "id": 1
+                            }
+                        }
+                    },
+                    "claim_collateral_arguments": {
+                        "fields": {
+                            "contract_id": {
+                                "type": "bytes",
+                                "id": 1
+                            }
+                        }
+                    },
+                    "claim_collateral_result": {
+                        "fields": {
+                            "success": {
+                                "type": "bool",
+                                "id": 1
+                            }
+                        }
+                    },
+                    "borrow_rate": {
+                        "fields": {
+                            "value": {
+                                "type": "uint64",
+                                "id": 1
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

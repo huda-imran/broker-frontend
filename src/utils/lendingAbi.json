@@ -1,0 +1,255 @@
+{
+    "methods": {
+        "setPaused": {
+            "argument": "common.boole",
+            "return": "",
+            "description": "Set Paused",
+            "entry_point": 3807681036,
+            "read_only": false,
+            "entry-point": "0xe2f49a0c",
+            "read-only": false
+        },
+        "getPaused": {
+            "argument": "",
+            "return": "common.boole",
+            "description": "Get Paused State",
+            "entry_point": 349284818,
+            "read_only": true,
+            "entry-point": "0x14d1a9d2",
+            "read-only": true
+        },
+        "setLendingRate": {
+            "argument": "common.uint64",
+            "return": "",
+            "description": "Set Lending Rate (ROI %)",
+            "entry_point": 2355177671,
+            "read_only": false,
+            "entry-point": "0x8c6128c7",
+            "read-only": false
+        },
+        "getLendingRate": {
+            "argument": "",
+            "return": "common.uint64",
+            "description": "Get Lending Rate (ROI %)",
+            "entry_point": 1019063507,
+            "read_only": true,
+            "entry-point": "0x3cbdacd3",
+            "read-only": true
+        },
+        "deposit": {
+            "argument": "lending.deposit_arguments",
+            "return": "lending.deposit_result",
+            "description": "Deposit funds",
+            "entry_point": 3283745656,
+            "read_only": false,
+            "entry-point": "0xc3b9fb78",
+            "read-only": false
+        },
+        "withdraw": {
+            "argument": "lending.withdraw_arguments",
+            "return": "lending.withdraw_result",
+            "description": "Withdraw funds",
+            "entry_point": 3262063323,
+            "read_only": false,
+            "entry-point": "0xc26f22db",
+            "read-only": false
+        }
+    },
+    "types": "CoQDCidrb2lub3Nib3gtcHJvdG8vbWFuYXNoYXJlci9jb21tb24ucHJvdG8SBmNvbW1vbhoUa29pbm9zL29wdGlvbnMucHJvdG8iGwoDc3RyEhQKBXZhbHVlGAEgASgJUgV2YWx1ZSIeCgZ1aW50MzISFAoFdmFsdWUYASABKA1SBXZhbHVlIiIKBnVpbnQ2NBIYCgV2YWx1ZRgBIAEoBEICMAFSBXZhbHVlIh0KBWJvb2xlEhQKBXZhbHVlGAEgASgIUgV2YWx1ZSIlCgdhZGRyZXNzEhoKBXZhbHVlGAEgASgMQgSAtRgGUgV2YWx1ZSJdCglsaXN0X2FyZ3MSGgoFc3RhcnQYASABKAxCBIC1GAZSBXN0YXJ0EhQKBWxpbWl0GAIgASgFUgVsaW1pdBIeCgpkZXNjZW5kaW5nGAMgASgIUgpkZXNjZW5kaW5nIi0KCWFkZHJlc3NlcxIgCghhY2NvdW50cxgBIAMoDEIEgLUYBlIIYWNjb3VudHNiBnByb3RvMwrUAwoNbGVuZGluZy5wcm90bxIHbGVuZGluZyJDChFkZXBvc2l0X2FyZ3VtZW50cxIWCgZsZW5kZXIYASABKAxSBmxlbmRlchIWCgZhbW91bnQYAiABKARSBmFtb3VudCJJCg5kZXBvc2l0X3Jlc3VsdBIYCgdzdWNjZXNzGAEgASgIUgdzdWNjZXNzEh0KCmRlcG9zaXRfaWQYAiABKAxSCWRlcG9zaXRJZCJLChJ3aXRoZHJhd19hcmd1bWVudHMSFgoGbGVuZGVyGAEgASgMUgZsZW5kZXISHQoKZGVwb3NpdF9pZBgCIAEoDFIJZGVwb3NpdElkIisKD3dpdGhkcmF3X3Jlc3VsdBIYCgdzdWNjZXNzGAEgASgIUgdzdWNjZXNzIl0KDWRlcG9zaXRfc3RhdGUSFgoGYW1vdW50GAEgASgEUgZhbW91bnQSGgoIZGVhZGxpbmUYAiABKARSCGRlYWRsaW5lEhgKB2NsYWltZWQYAyABKAhSB2NsYWltZWQiIwoLcGF1c2Vfc3RhdGUSFAoFdmFsdWUYASABKAhSBXZhbHVlIiQKDGxlbmRpbmdfcmF0ZRIUCgV2YWx1ZRgBIAEoBFIFdmFsdWViBnByb3RvMw==",
+    "koilib_types": {
+        "nested": {
+            "common": {
+                "nested": {
+                    "str": {
+                        "fields": {
+                            "value": {
+                                "type": "string",
+                                "id": 1
+                            }
+                        }
+                    },
+                    "uint32": {
+                        "fields": {
+                            "value": {
+                                "type": "uint32",
+                                "id": 1
+                            }
+                        }
+                    },
+                    "uint64": {
+                        "fields": {
+                            "value": {
+                                "type": "uint64",
+                                "id": 1,
+                                "options": {
+                                    "jstype": "JS_STRING"
+                                }
+                            }
+                        }
+                    },
+                    "boole": {
+                        "fields": {
+                            "value": {
+                                "type": "bool",
+                                "id": 1
+                            }
+                        }
+                    },
+                    "address": {
+                        "fields": {
+                            "value": {
+                                "type": "bytes",
+                                "id": 1,
+                                "options": {
+                                    "(koinos.btype)": "ADDRESS"
+                                }
+                            }
+                        }
+                    },
+                    "list_args": {
+                        "fields": {
+                            "start": {
+                                "type": "bytes",
+                                "id": 1,
+                                "options": {
+                                    "(koinos.btype)": "ADDRESS"
+                                }
+                            },
+                            "limit": {
+                                "type": "int32",
+                                "id": 2
+                            },
+                            "descending": {
+                                "type": "bool",
+                                "id": 3
+                            }
+                        }
+                    },
+                    "addresses": {
+                        "fields": {
+                            "accounts": {
+                                "rule": "repeated",
+                                "type": "bytes",
+                                "id": 1,
+                                "options": {
+                                    "(koinos.btype)": "ADDRESS"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "koinos": {
+                "options": {
+                    "go_package": "github.com/koinos/koinos-proto-golang/koinos"
+                },
+                "nested": {
+                    "bytes_type": {
+                        "values": {
+                            "BASE64": 0,
+                            "BASE58": 1,
+                            "HEX": 2,
+                            "BLOCK_ID": 3,
+                            "TRANSACTION_ID": 4,
+                            "CONTRACT_ID": 5,
+                            "ADDRESS": 6
+                        }
+                    },
+                    "_btype": {
+                        "oneof": [
+                            "btype"
+                        ]
+                    },
+                    "btype": {
+                        "type": "bytes_type",
+                        "id": 50000,
+                        "extend": "google.protobuf.FieldOptions",
+                        "options": {
+                            "proto3_optional": true
+                        }
+                    }
+                }
+            },
+            "lending": {
+                "nested": {
+                    "deposit_arguments": {
+                        "fields": {
+                            "lender": {
+                                "type": "bytes",
+                                "id": 1
+                            },
+                            "amount": {
+                                "type": "uint64",
+                                "id": 2
+                            }
+                        }
+                    },
+                    "deposit_result": {
+                        "fields": {
+                            "success": {
+                                "type": "bool",
+                                "id": 1
+                            },
+                            "deposit_id": {
+                                "type": "bytes",
+                                "id": 2
+                            }
+                        }
+                    },
+                    "withdraw_arguments": {
+                        "fields": {
+                            "lender": {
+                                "type": "bytes",
+                                "id": 1
+                            },
+                            "deposit_id": {
+                                "type": "bytes",
+                                "id": 2
+                            }
+                        }
+                    },
+                    "withdraw_result": {
+                        "fields": {
+                            "success": {
+                                "type": "bool",
+                                "id": 1
+                            }
+                        }
+                    },
+                    "deposit_state": {
+                        "fields": {
+                            "amount": {
+                                "type": "uint64",
+                                "id": 1
+                            },
+                            "deadline": {
+                                "type": "uint64",
+                                "id": 2
+                            },
+                            "claimed": {
+                                "type": "bool",
+                                "id": 3
+                            }
+                        }
+                    },
+                    "pause_state": {
+                        "fields": {
+                            "value": {
+                                "type": "bool",
+                                "id": 1
+                            }
+                        }
+                    },
+                    "lending_rate": {
+                        "fields": {
+                            "value": {
+                                "type": "uint64",
+                                "id": 1
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

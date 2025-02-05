@@ -1,0 +1,117 @@
+/* Dashboard Container */
+
+.dashboard-container {
+    background-color: #2E2E2E;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.7);
+    max-width: 900px;
+    width: 100%;
+    margin: 20px auto;
+    color: var(--text-color);
+}
+
+
+/* Section Title */
+
+.section-title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+
+/* Contract Section */
+
+.contract-section {
+    margin-bottom: 20px;
+}
+
+.contract-section h2 {
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+
+/* Table Container with Scroll */
+
+.table-container {
+    max-height: 300px;
+    /* Set a maximum height for scrollable content */
+    overflow-y: auto;
+    /* Enable vertical scrolling */
+    margin-top: 10px;
+}
+
+
+/* Table Styling */
+
+.contract-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.contract-table th,
+.contract-table td {
+    padding: 10px;
+    border: 1px solid var(--border-color);
+    text-align: center;
+}
+
+.contract-table th {
+    background-color: #3A3A3A;
+    color: var(--text-color);
+}
+
+
+/* Status Styles */
+
+.status {
+    padding: 4px 8px;
+    border-radius: 5px;
+    font-weight: 500;
+}
+
+.status.active {
+    color: #10A37F;
+    background-color: rgba(16, 163, 127, 0.2);
+}
+
+.status.pending {
+    color: #FFAA00;
+    background-color: rgba(255, 170, 0, 0.2);
+}
+
+
+/* Action Buttons */
+
+.action-btn {
+    padding: 6px 12px;
+    font-size: 14px;
+    background-color: var(--accent-color);
+    color: var(--text-color);
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.action-btn:hover {
+    background-color: var(--hover-accent-color);
+    box-shadow: 0 0 8px rgba(16, 163, 127, 0.6);
+}
+
+
+/* Responsive Design */
+
+@media (max-width: 768px) {
+    .dashboard-container {
+        width: 100%;
+        padding: 15px;
+    }
+    .contract-table th,
+    .contract-table td {
+        font-size: 12px;
+        padding: 8px;
+    }
+}

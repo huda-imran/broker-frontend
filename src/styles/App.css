@@ -1,0 +1,75 @@
+/* General Body Styles */
+
+body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: var(--font-family);
+    background-color: var(--background-color);
+    color: var(--text-color);
+}
+
+
+/* Container Grid */
+
+.app-container {
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    /* Header, Main Content, Footer */
+    height: 100vh;
+    /* Full View Height */
+}
+
+
+/* Header and Footer */
+
+header,
+footer {
+    background-color: var(--border-color);
+    padding: 10px 20px;
+    text-align: center;
+}
+
+
+/* Main Content Grid */
+
+.main-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    overflow-y: auto;
+    /* Scroll if content overflows */
+}
+
+.connect-wallet-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    text-align: center;
+    background-color: var(--background-color);
+    color: var(--text-color);
+}
+
+.connect-wallet-container h1 {
+    font-size: 2rem;
+    margin-bottom: 10px;
+}
+
+.connect-wallet-container p {
+    font-size: 1.2rem;
+    color: var(--secondary-text-color);
+}
+
+
+/* footer */
+
+footer {
+    color: var(--secondary-text-color);
+    font-size: 14px;
+    text-align: center;
+    padding: 10px 0;
+    border-top: 1px solid var(--border-color);
+}

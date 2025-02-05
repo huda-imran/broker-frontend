@@ -1,0 +1,139 @@
+/* General Container */
+
+.borrow-container {
+    display: flex;
+    flex-direction: column;
+    background-color: #2E2E2E;
+    /* Slightly lighter gray */
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.7);
+    /* Softer shadow */
+    max-width: 600px;
+    width: 100%;
+    margin: 20px auto;
+    /* Centered */
+    color: var(--text-color);
+}
+
+
+/* Title */
+
+.section-title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: var(--text-color);
+    /* Lighter text */
+}
+
+
+/* Input Groups */
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 15px;
+}
+
+.input-group label {
+    margin-bottom: 8px;
+    font-size: 16px;
+    color: var(--secondary-text-color);
+}
+
+
+/* Inputs and Select Dropdown */
+
+.input-group input,
+.input-group select {
+    padding: 12px;
+    font-size: 16px;
+    border-radius: 6px;
+    border: 1px solid var(--border-color);
+    background-color: #3A3A3A;
+    /* Slightly darker inputs */
+    color: var(--text-color);
+    /* Light text */
+    transition: all 0.3s ease-in-out;
+}
+
+.input-group input:focus,
+.input-group select:focus {
+    border-color: var(--accent-color);
+    /* Highlight border */
+    outline: none;
+    box-shadow: 0 0 8px rgba(16, 163, 127, 0.6);
+    /* Subtle glow */
+}
+
+
+/* Submit Button */
+
+.borrow-btn {
+    padding: 12px;
+    font-size: 16px;
+    background-color: var(--accent-color);
+    /* Teal color */
+    color: var(--text-color);
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    margin-top: 10px;
+}
+
+.borrow-btn:hover {
+    background-color: var(--hover-accent-color);
+    /* Slightly lighter teal */
+    box-shadow: 0 0 12px rgba(16, 163, 127, 0.8);
+    /* Stronger glow effect */
+}
+
+
+/* Info Box */
+
+.info-box {
+    margin-top: 20px;
+    padding: 15px;
+    background-color: #3A3A3A;
+    /* Dark box */
+    border-radius: 6px;
+    border-left: 4px solid var(--accent-color);
+    /* Accent border */
+}
+
+.info-box p {
+    margin: 5px 0;
+    font-size: 14px;
+    color: var(--secondary-text-color);
+}
+
+
+/* Responsive Design */
+
+@media (max-width: 768px) {
+    .borrow-container {
+        width: 100%;
+        padding: 15px;
+    }
+    .section-title {
+        font-size: 20px;
+    }
+    .borrow-btn {
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 768px) {
+    .borrow-container {
+        width: 100%;
+        padding: 15px;
+    }
+    .section-title {
+        font-size: 20px;
+    }
+    .borrow-btn {
+        font-size: 14px;
+    }
+}
