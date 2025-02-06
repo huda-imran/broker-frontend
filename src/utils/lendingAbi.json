@@ -55,7 +55,7 @@
             "read-only": false
         }
     },
-    "types": "CoQDCidrb2lub3Nib3gtcHJvdG8vbWFuYXNoYXJlci9jb21tb24ucHJvdG8SBmNvbW1vbhoUa29pbm9zL29wdGlvbnMucHJvdG8iGwoDc3RyEhQKBXZhbHVlGAEgASgJUgV2YWx1ZSIeCgZ1aW50MzISFAoFdmFsdWUYASABKA1SBXZhbHVlIiIKBnVpbnQ2NBIYCgV2YWx1ZRgBIAEoBEICMAFSBXZhbHVlIh0KBWJvb2xlEhQKBXZhbHVlGAEgASgIUgV2YWx1ZSIlCgdhZGRyZXNzEhoKBXZhbHVlGAEgASgMQgSAtRgGUgV2YWx1ZSJdCglsaXN0X2FyZ3MSGgoFc3RhcnQYASABKAxCBIC1GAZSBXN0YXJ0EhQKBWxpbWl0GAIgASgFUgVsaW1pdBIeCgpkZXNjZW5kaW5nGAMgASgIUgpkZXNjZW5kaW5nIi0KCWFkZHJlc3NlcxIgCghhY2NvdW50cxgBIAMoDEIEgLUYBlIIYWNjb3VudHNiBnByb3RvMwrUAwoNbGVuZGluZy5wcm90bxIHbGVuZGluZyJDChFkZXBvc2l0X2FyZ3VtZW50cxIWCgZsZW5kZXIYASABKAxSBmxlbmRlchIWCgZhbW91bnQYAiABKARSBmFtb3VudCJJCg5kZXBvc2l0X3Jlc3VsdBIYCgdzdWNjZXNzGAEgASgIUgdzdWNjZXNzEh0KCmRlcG9zaXRfaWQYAiABKAxSCWRlcG9zaXRJZCJLChJ3aXRoZHJhd19hcmd1bWVudHMSFgoGbGVuZGVyGAEgASgMUgZsZW5kZXISHQoKZGVwb3NpdF9pZBgCIAEoDFIJZGVwb3NpdElkIisKD3dpdGhkcmF3X3Jlc3VsdBIYCgdzdWNjZXNzGAEgASgIUgdzdWNjZXNzIl0KDWRlcG9zaXRfc3RhdGUSFgoGYW1vdW50GAEgASgEUgZhbW91bnQSGgoIZGVhZGxpbmUYAiABKARSCGRlYWRsaW5lEhgKB2NsYWltZWQYAyABKAhSB2NsYWltZWQiIwoLcGF1c2Vfc3RhdGUSFAoFdmFsdWUYASABKAhSBXZhbHVlIiQKDGxlbmRpbmdfcmF0ZRIUCgV2YWx1ZRgBIAEoBFIFdmFsdWViBnByb3RvMw==",
+    "types": "CoQDCidrb2lub3Nib3gtcHJvdG8vbWFuYXNoYXJlci9jb21tb24ucHJvdG8SBmNvbW1vbhoUa29pbm9zL29wdGlvbnMucHJvdG8iGwoDc3RyEhQKBXZhbHVlGAEgASgJUgV2YWx1ZSIeCgZ1aW50MzISFAoFdmFsdWUYASABKA1SBXZhbHVlIiIKBnVpbnQ2NBIYCgV2YWx1ZRgBIAEoBEICMAFSBXZhbHVlIh0KBWJvb2xlEhQKBXZhbHVlGAEgASgIUgV2YWx1ZSIlCgdhZGRyZXNzEhoKBXZhbHVlGAEgASgMQgSAtRgGUgV2YWx1ZSJdCglsaXN0X2FyZ3MSGgoFc3RhcnQYASABKAxCBIC1GAZSBXN0YXJ0EhQKBWxpbWl0GAIgASgFUgVsaW1pdBIeCgpkZXNjZW5kaW5nGAMgASgIUgpkZXNjZW5kaW5nIi0KCWFkZHJlc3NlcxIgCghhY2NvdW50cxgBIAMoDEIEgLUYBlIIYWNjb3VudHNiBnByb3RvMwr0AwoNbGVuZGluZy5wcm90bxIHbGVuZGluZxoUa29pbm9zL29wdGlvbnMucHJvdG8iTQoRZGVwb3NpdF9hcmd1bWVudHMSHAoGbGVuZGVyGAEgASgMQgSAtRgGUgZsZW5kZXISGgoGYW1vdW50GAIgASgEQgIwAVIGYW1vdW50IkkKDmRlcG9zaXRfcmVzdWx0EhgKB3N1Y2Nlc3MYASABKAhSB3N1Y2Nlc3MSHQoKZGVwb3NpdF9pZBgCIAEoDFIJZGVwb3NpdElkIksKEndpdGhkcmF3X2FyZ3VtZW50cxIWCgZsZW5kZXIYASABKAxSBmxlbmRlchIdCgpkZXBvc2l0X2lkGAIgASgMUglkZXBvc2l0SWQiKwoPd2l0aGRyYXdfcmVzdWx0EhgKB3N1Y2Nlc3MYASABKAhSB3N1Y2Nlc3MiXQoNZGVwb3NpdF9zdGF0ZRIWCgZhbW91bnQYASABKARSBmFtb3VudBIaCghkZWFkbGluZRgCIAEoBFIIZGVhZGxpbmUSGAoHY2xhaW1lZBgDIAEoCFIHY2xhaW1lZCIjCgtwYXVzZV9zdGF0ZRIUCgV2YWx1ZRgBIAEoCFIFdmFsdWUiJAoMbGVuZGluZ19yYXRlEhQKBXZhbHVlGAEgASgEUgV2YWx1ZWIGcHJvdG8z",
     "koilib_types": {
         "nested": {
             "common": {
@@ -176,11 +176,17 @@
                         "fields": {
                             "lender": {
                                 "type": "bytes",
-                                "id": 1
+                                "id": 1,
+                                "options": {
+                                    "(koinos.btype)": "ADDRESS"
+                                }
                             },
                             "amount": {
                                 "type": "uint64",
-                                "id": 2
+                                "id": 2,
+                                "options": {
+                                    "jstype": "JS_STRING"
+                                }
                             }
                         }
                     },
