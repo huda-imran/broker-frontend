@@ -68,7 +68,7 @@ export const BorrowSection = () => {
     };
 
     fetchBorrowRate();
-  }, []);
+  }, [BORROW_CONTRACT_ADDRESS, PROVIDER_URL]);
 
   // Handle Borrow Request
   const handleBorrow = async () => {
