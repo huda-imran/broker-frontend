@@ -13,35 +13,41 @@ const DashboardSection = () => {
   const [loading, setLoading] = useState(true);
   const { account } = useWallet();
 
-  // Fetch data from the backend APIs
   useEffect(() => {
     const fetchData = async () => {
       try {
         setLoading(true);
-
-        // Fetch borrow contracts
-        const borrowResponse = await fetch(`${process.env.REACT_APP_API_BASE_URL}/borrow`);
+  
+        if (!account) {
+          console.warn("No wallet connected. Skipping data fetch.");
+          return;
+        }
+  
+        // Fetch borrow contracts (pass borrower address)
+        const borrowResponse = await fetch(
+          `${process.env.REACT_APP_API_BASE_URL}/borrow?borrower=${account}`
+        );
         const borrowData = await borrowResponse.json();
-
-        console.log("Borrow API Response:", borrowData); // Debugging
-
-        // Ensure it's an array before setting state
         setBorrowContracts(Array.isArray(borrowData) ? borrowData : []);
-
-        // Fetch lend contracts
-        const lendResponse = await fetch(`${process.env.REACT_APP_API_BASE_URL}/lend`);
+  
+        // Fetch lend contracts (pass lender address)
+        const lendResponse = await fetch(
+          `${process.env.REACT_APP_API_BASE_URL}/lend?lender=${account}`
+        );
         const lendData = await lendResponse.json();
         setLendContracts(Array.isArray(lendData) ? lendData : []);
+  
       } catch (error) {
         console.error("Error fetching data:", error);
-        alert("Failed to fetch contract data. Check the console for details.");
+        alert("Failed to fetch contract data.");
       } finally {
         setLoading(false);
       }
     };
-
+  
     fetchData();
-  }, []);
+  }, [account]); // Re-run the effect when the account changes
+  
 
   // Action Handlers
   const handleClaim = async (id) => {
