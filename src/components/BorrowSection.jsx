@@ -110,8 +110,11 @@ export const BorrowSection = () => {
         throw new Error("Failed to fetch collateral data.");
       }
 
-      const { collateralAmount, tokenAddress } = await collateralResponse.json();
+      let { collateralAmount, tokenAddress } = await collateralResponse.json();
+      //console.log(`Collateral Required: ${collateralAmount} ${selectedToken}`);
+      collateralAmount = collateralAmount*100000000;
       console.log(`Collateral Required: ${collateralAmount} ${selectedToken}`);
+      
 
       // Token contract instance
       const tokenContract = new Contract({
