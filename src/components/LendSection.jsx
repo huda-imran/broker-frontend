@@ -4,6 +4,7 @@ import * as kondor from "kondor-js";
 import { Contract, utils } from "koilib";
 import abi from "../utils/lendingAbi.json"; // Lending Contract ABI
 import { useWallet } from "../context/WalletContext";
+import bs58 from "bs58";
 
 export const LendSection = () => {
   const [amountToLend, setAmountToLend] = useState(1000);
@@ -74,6 +75,19 @@ export const LendSection = () => {
     fetchLendingRate();
   }, [LENDING_CONTRACT_ADDRESS, PROVIDER_URL]);
 
+
+  async function generateDepositId(lenderAddress) {
+    const encoder = new TextEncoder();
+    const data = encoder.encode(lenderAddress + Date.now().toString());
+    
+    // Compute SHA-256 hash
+    const hashBuffer = await window.crypto.subtle.digest("SHA-256", data);
+    
+    // Convert to Uint8Array and encode in Base58
+    return bs58.encode(new Uint8Array(hashBuffer)).slice(0, 20); // Ensure ID is max 20 chars
+  }
+  
+
 // **🔹 Handle Lending Submission**
 const handleSubmit = async () => {
   if (amountToLend <= 0) {
@@ -129,10 +143,16 @@ const handleSubmit = async () => {
       signer: kondor.getSigner(account),
     });
 
+     // **🔹 Generate Deposit ID**
+     const depositId = await generateDepositId(account);
+  
+     console.log(`Generated Deposit ID: ${depositId}`);
+
     // **🔹 Transaction Arguments**
     const args = {
       lender: account,
       amount: scaledAmount, // Send scaled amount
+      deposit_id: depositId
     };
 
     console.log("Lending Transaction Args:", args);

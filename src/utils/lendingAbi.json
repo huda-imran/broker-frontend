@@ -36,6 +36,15 @@
             "entry-point": "0x3cbdacd3",
             "read-only": true
         },
+        "getDeposit": {
+            "argument": "lending.get_deposit_arguments",
+            "return": "lending.get_deposit_result",
+            "description": "Get Deposit Details",
+            "entry_point": 3234897188,
+            "read_only": true,
+            "entry-point": "0xc0d09d24",
+            "read-only": true
+        },
         "deposit": {
             "argument": "lending.deposit_arguments",
             "return": "lending.deposit_result",
@@ -55,7 +64,7 @@
             "read-only": false
         }
     },
-    "types": "CoQDCidrb2lub3Nib3gtcHJvdG8vbWFuYXNoYXJlci9jb21tb24ucHJvdG8SBmNvbW1vbhoUa29pbm9zL29wdGlvbnMucHJvdG8iGwoDc3RyEhQKBXZhbHVlGAEgASgJUgV2YWx1ZSIeCgZ1aW50MzISFAoFdmFsdWUYASABKA1SBXZhbHVlIiIKBnVpbnQ2NBIYCgV2YWx1ZRgBIAEoBEICMAFSBXZhbHVlIh0KBWJvb2xlEhQKBXZhbHVlGAEgASgIUgV2YWx1ZSIlCgdhZGRyZXNzEhoKBXZhbHVlGAEgASgMQgSAtRgGUgV2YWx1ZSJdCglsaXN0X2FyZ3MSGgoFc3RhcnQYASABKAxCBIC1GAZSBXN0YXJ0EhQKBWxpbWl0GAIgASgFUgVsaW1pdBIeCgpkZXNjZW5kaW5nGAMgASgIUgpkZXNjZW5kaW5nIi0KCWFkZHJlc3NlcxIgCghhY2NvdW50cxgBIAMoDEIEgLUYBlIIYWNjb3VudHNiBnByb3RvMwr0AwoNbGVuZGluZy5wcm90bxIHbGVuZGluZxoUa29pbm9zL29wdGlvbnMucHJvdG8iTQoRZGVwb3NpdF9hcmd1bWVudHMSHAoGbGVuZGVyGAEgASgMQgSAtRgGUgZsZW5kZXISGgoGYW1vdW50GAIgASgEQgIwAVIGYW1vdW50IkkKDmRlcG9zaXRfcmVzdWx0EhgKB3N1Y2Nlc3MYASABKAhSB3N1Y2Nlc3MSHQoKZGVwb3NpdF9pZBgCIAEoDFIJZGVwb3NpdElkIksKEndpdGhkcmF3X2FyZ3VtZW50cxIWCgZsZW5kZXIYASABKAxSBmxlbmRlchIdCgpkZXBvc2l0X2lkGAIgASgMUglkZXBvc2l0SWQiKwoPd2l0aGRyYXdfcmVzdWx0EhgKB3N1Y2Nlc3MYASABKAhSB3N1Y2Nlc3MiXQoNZGVwb3NpdF9zdGF0ZRIWCgZhbW91bnQYASABKARSBmFtb3VudBIaCghkZWFkbGluZRgCIAEoBFIIZGVhZGxpbmUSGAoHY2xhaW1lZBgDIAEoCFIHY2xhaW1lZCIjCgtwYXVzZV9zdGF0ZRIUCgV2YWx1ZRgBIAEoCFIFdmFsdWUiJAoMbGVuZGluZ19yYXRlEhQKBXZhbHVlGAEgASgEUgV2YWx1ZWIGcHJvdG8z",
+    "types": "CoQDCidrb2lub3Nib3gtcHJvdG8vbWFuYXNoYXJlci9jb21tb24ucHJvdG8SBmNvbW1vbhoUa29pbm9zL29wdGlvbnMucHJvdG8iGwoDc3RyEhQKBXZhbHVlGAEgASgJUgV2YWx1ZSIeCgZ1aW50MzISFAoFdmFsdWUYASABKA1SBXZhbHVlIiIKBnVpbnQ2NBIYCgV2YWx1ZRgBIAEoBEICMAFSBXZhbHVlIh0KBWJvb2xlEhQKBXZhbHVlGAEgASgIUgV2YWx1ZSIlCgdhZGRyZXNzEhoKBXZhbHVlGAEgASgMQgSAtRgGUgV2YWx1ZSJdCglsaXN0X2FyZ3MSGgoFc3RhcnQYASABKAxCBIC1GAZSBXN0YXJ0EhQKBWxpbWl0GAIgASgFUgVsaW1pdBIeCgpkZXNjZW5kaW5nGAMgASgIUgpkZXNjZW5kaW5nIi0KCWFkZHJlc3NlcxIgCghhY2NvdW50cxgBIAMoDEIEgLUYBlIIYWNjb3VudHNiBnByb3RvMwrPBgoNbGVuZGluZy5wcm90bxIHbGVuZGluZxoUa29pbm9zL29wdGlvbnMucHJvdG8icgoRZGVwb3NpdF9hcmd1bWVudHMSHAoGbGVuZGVyGAEgASgMQgSAtRgGUgZsZW5kZXISGgoGYW1vdW50GAIgASgEQgIwAVIGYW1vdW50EiMKCmRlcG9zaXRfaWQYAyABKAxCBIC1GAFSCWRlcG9zaXRJZCJPCg5kZXBvc2l0X3Jlc3VsdBIYCgdzdWNjZXNzGAEgASgIUgdzdWNjZXNzEiMKCmRlcG9zaXRfaWQYAiABKAxCBIC1GAFSCWRlcG9zaXRJZCJsCg1kZXBvc2l0X2V2ZW50EhwKBmxlbmRlchgBIAEoDEIEgLUYBlIGbGVuZGVyEhgKB3N1Y2Nlc3MYAiABKAhSB3N1Y2Nlc3MSIwoKZGVwb3NpdF9pZBgDIAEoDEIEgLUYAVIJZGVwb3NpdElkIlcKEndpdGhkcmF3X2FyZ3VtZW50cxIcCgZsZW5kZXIYASABKAxCBIC1GAZSBmxlbmRlchIjCgpkZXBvc2l0X2lkGAIgASgMQgSAtRgBUglkZXBvc2l0SWQiKwoPd2l0aGRyYXdfcmVzdWx0EhgKB3N1Y2Nlc3MYASABKAhSB3N1Y2Nlc3MiZQoNZGVwb3NpdF9zdGF0ZRIaCgZhbW91bnQYASABKARCAjABUgZhbW91bnQSHgoIZGVhZGxpbmUYAiABKARCAjABUghkZWFkbGluZRIYCgdjbGFpbWVkGAMgASgIUgdjbGFpbWVkIiMKC3BhdXNlX3N0YXRlEhQKBXZhbHVlGAEgASgIUgV2YWx1ZSIoCgxsZW5kaW5nX3JhdGUSGAoFdmFsdWUYASABKARCAjABUgV2YWx1ZSI8ChVnZXRfZGVwb3NpdF9hcmd1bWVudHMSIwoKZGVwb3NpdF9pZBgBIAEoDEIEgLUYAVIJZGVwb3NpdElkImoKEmdldF9kZXBvc2l0X3Jlc3VsdBIaCgZhbW91bnQYASABKARCAjABUgZhbW91bnQSHgoIZGVhZGxpbmUYAiABKARCAjABUghkZWFkbGluZRIYCgdjbGFpbWVkGAMgASgIUgdjbGFpbWVkYgZwcm90bzM=",
     "koilib_types": {
         "nested": {
             "common": {
@@ -187,6 +196,13 @@
                                 "options": {
                                     "jstype": "JS_STRING"
                                 }
+                            },
+                            "deposit_id": {
+                                "type": "bytes",
+                                "id": 3,
+                                "options": {
+                                    "(koinos.btype)": "BASE58"
+                                }
                             }
                         }
                     },
@@ -198,7 +214,32 @@
                             },
                             "deposit_id": {
                                 "type": "bytes",
+                                "id": 2,
+                                "options": {
+                                    "(koinos.btype)": "BASE58"
+                                }
+                            }
+                        }
+                    },
+                    "deposit_event": {
+                        "fields": {
+                            "lender": {
+                                "type": "bytes",
+                                "id": 1,
+                                "options": {
+                                    "(koinos.btype)": "ADDRESS"
+                                }
+                            },
+                            "success": {
+                                "type": "bool",
                                 "id": 2
+                            },
+                            "deposit_id": {
+                                "type": "bytes",
+                                "id": 3,
+                                "options": {
+                                    "(koinos.btype)": "BASE58"
+                                }
                             }
                         }
                     },
@@ -206,11 +247,17 @@
                         "fields": {
                             "lender": {
                                 "type": "bytes",
-                                "id": 1
+                                "id": 1,
+                                "options": {
+                                    "(koinos.btype)": "ADDRESS"
+                                }
                             },
                             "deposit_id": {
                                 "type": "bytes",
-                                "id": 2
+                                "id": 2,
+                                "options": {
+                                    "(koinos.btype)": "BASE58"
+                                }
                             }
                         }
                     },
@@ -226,11 +273,17 @@
                         "fields": {
                             "amount": {
                                 "type": "uint64",
-                                "id": 1
+                                "id": 1,
+                                "options": {
+                                    "jstype": "JS_STRING"
+                                }
                             },
                             "deadline": {
                                 "type": "uint64",
-                                "id": 2
+                                "id": 2,
+                                "options": {
+                                    "jstype": "JS_STRING"
+                                }
                             },
                             "claimed": {
                                 "type": "bool",
@@ -250,7 +303,43 @@
                         "fields": {
                             "value": {
                                 "type": "uint64",
-                                "id": 1
+                                "id": 1,
+                                "options": {
+                                    "jstype": "JS_STRING"
+                                }
+                            }
+                        }
+                    },
+                    "get_deposit_arguments": {
+                        "fields": {
+                            "deposit_id": {
+                                "type": "bytes",
+                                "id": 1,
+                                "options": {
+                                    "(koinos.btype)": "BASE58"
+                                }
+                            }
+                        }
+                    },
+                    "get_deposit_result": {
+                        "fields": {
+                            "amount": {
+                                "type": "uint64",
+                                "id": 1,
+                                "options": {
+                                    "jstype": "JS_STRING"
+                                }
+                            },
+                            "deadline": {
+                                "type": "uint64",
+                                "id": 2,
+                                "options": {
+                                    "jstype": "JS_STRING"
+                                }
+                            },
+                            "claimed": {
+                                "type": "bool",
+                                "id": 3
                             }
                         }
                     }

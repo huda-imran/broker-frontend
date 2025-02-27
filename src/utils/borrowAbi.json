@@ -3,7 +3,7 @@
         "setBorrowRate": {
             "argument": "common.uint64",
             "return": "",
-            "description": "Set Lending Rate (ROI %)",
+            "description": "Set Borrow Rate (ROI %)",
             "entry_point": 207378433,
             "read_only": false,
             "entry-point": "0x0c5c5801",
@@ -46,7 +46,7 @@
             "read-only": false
         }
     },
-    "types": "CoQDCidrb2lub3Nib3gtcHJvdG8vbWFuYXNoYXJlci9jb21tb24ucHJvdG8SBmNvbW1vbhoUa29pbm9zL29wdGlvbnMucHJvdG8iGwoDc3RyEhQKBXZhbHVlGAEgASgJUgV2YWx1ZSIeCgZ1aW50MzISFAoFdmFsdWUYASABKA1SBXZhbHVlIiIKBnVpbnQ2NBIYCgV2YWx1ZRgBIAEoBEICMAFSBXZhbHVlIh0KBWJvb2xlEhQKBXZhbHVlGAEgASgIUgV2YWx1ZSIlCgdhZGRyZXNzEhoKBXZhbHVlGAEgASgMQgSAtRgGUgV2YWx1ZSJdCglsaXN0X2FyZ3MSGgoFc3RhcnQYASABKAxCBIC1GAZSBXN0YXJ0EhQKBWxpbWl0GAIgASgFUgVsaW1pdBIeCgpkZXNjZW5kaW5nGAMgASgIUgpkZXNjZW5kaW5nIi0KCWFkZHJlc3NlcxIgCghhY2NvdW50cxgBIAMoDEIEgLUYBlIIYWNjb3VudHNiBnByb3RvMwqABQoMYm9ycm93LnByb3RvEgZib3Jyb3caFGtvaW5vcy9vcHRpb25zLnByb3RvIsYBChBib3Jyb3dfYXJndW1lbnRzEiAKCGJvcnJvd2VyGAEgASgMQgSAtRgGUghib3Jyb3dlchIeCgpjb2xsYXRlcmFsGAIgASgEUgpjb2xsYXRlcmFsEiMKDWJvcnJvd19hbW91bnQYAyABKARSDGJvcnJvd0Ftb3VudBIaCghkZWFkbGluZRgEIAEoBFIIZGVhZGxpbmUSLwoQY29sbGF0ZXJhbF90b2tlbhgFIAEoDEIEgLUYBlIPY29sbGF0ZXJhbFRva2VuIkoKDWJvcnJvd19yZXN1bHQSGAoHc3VjY2VzcxgBIAEoCFIHc3VjY2VzcxIfCgtjb250cmFjdF9pZBgCIAEoDFIKY29udHJhY3RJZCJyCg9yZXBheV9hcmd1bWVudHMSIAoIYm9ycm93ZXIYASABKAxCBIC1GAZSCGJvcnJvd2VyEhwKCXJlcGF5bWVudBgCIAEoBFIJcmVwYXltZW50Eh8KC2NvbnRyYWN0X2lkGAMgASgMUgpjb250cmFjdElkIigKDHJlcGF5X3Jlc3VsdBIYCgdzdWNjZXNzGAEgASgIUgdzdWNjZXNzIj0KGmNsYWltX2NvbGxhdGVyYWxfYXJndW1lbnRzEh8KC2NvbnRyYWN0X2lkGAEgASgMUgpjb250cmFjdElkIjMKF2NsYWltX2NvbGxhdGVyYWxfcmVzdWx0EhgKB3N1Y2Nlc3MYASABKAhSB3N1Y2Nlc3MiIwoLYm9ycm93X3JhdGUSFAoFdmFsdWUYASABKARSBXZhbHVlYgZwcm90bzM=",
+    "types": "CoQDCidrb2lub3Nib3gtcHJvdG8vbWFuYXNoYXJlci9jb21tb24ucHJvdG8SBmNvbW1vbhoUa29pbm9zL29wdGlvbnMucHJvdG8iGwoDc3RyEhQKBXZhbHVlGAEgASgJUgV2YWx1ZSIeCgZ1aW50MzISFAoFdmFsdWUYASABKA1SBXZhbHVlIiIKBnVpbnQ2NBIYCgV2YWx1ZRgBIAEoBEICMAFSBXZhbHVlIh0KBWJvb2xlEhQKBXZhbHVlGAEgASgIUgV2YWx1ZSIlCgdhZGRyZXNzEhoKBXZhbHVlGAEgASgMQgSAtRgGUgV2YWx1ZSJdCglsaXN0X2FyZ3MSGgoFc3RhcnQYASABKAxCBIC1GAZSBXN0YXJ0EhQKBWxpbWl0GAIgASgFUgVsaW1pdBIeCgpkZXNjZW5kaW5nGAMgASgIUgpkZXNjZW5kaW5nIi0KCWFkZHJlc3NlcxIgCghhY2NvdW50cxgBIAMoDEIEgLUYBlIIYWNjb3VudHNiBnByb3RvMwqzBQoMYm9ycm93LnByb3RvEgZib3Jyb3caFGtvaW5vcy9vcHRpb25zLnByb3RvIu0BChBib3Jyb3dfYXJndW1lbnRzEiAKCGJvcnJvd2VyGAEgASgMQgSAtRgGUghib3Jyb3dlchIeCgpjb2xsYXRlcmFsGAIgASgEUgpjb2xsYXRlcmFsEiMKDWJvcnJvd19hbW91bnQYAyABKARSDGJvcnJvd0Ftb3VudBIaCghkZWFkbGluZRgEIAEoBFIIZGVhZGxpbmUSLwoQY29sbGF0ZXJhbF90b2tlbhgFIAEoDEIEgLUYBlIPY29sbGF0ZXJhbFRva2VuEiUKC2NvbnRyYWN0X2lkGAYgASgMQgSAtRgBUgpjb250cmFjdElkIlAKDWJvcnJvd19yZXN1bHQSGAoHc3VjY2VzcxgBIAEoCFIHc3VjY2VzcxIlCgtjb250cmFjdF9pZBgCIAEoDEIEgLUYAVIKY29udHJhY3RJZCJ4Cg9yZXBheV9hcmd1bWVudHMSIAoIYm9ycm93ZXIYASABKAxCBIC1GAZSCGJvcnJvd2VyEhwKCXJlcGF5bWVudBgCIAEoBFIJcmVwYXltZW50EiUKC2NvbnRyYWN0X2lkGAMgASgMQgSAtRgBUgpjb250cmFjdElkIigKDHJlcGF5X3Jlc3VsdBIYCgdzdWNjZXNzGAEgASgIUgdzdWNjZXNzIj0KGmNsYWltX2NvbGxhdGVyYWxfYXJndW1lbnRzEh8KC2NvbnRyYWN0X2lkGAEgASgMUgpjb250cmFjdElkIjMKF2NsYWltX2NvbGxhdGVyYWxfcmVzdWx0EhgKB3N1Y2Nlc3MYASABKAhSB3N1Y2Nlc3MiIwoLYm9ycm93X3JhdGUSFAoFdmFsdWUYASABKARSBXZhbHVlYgZwcm90bzM=",
     "koilib_types": {
         "nested": {
             "common": {
@@ -190,6 +190,13 @@
                                 "options": {
                                     "(koinos.btype)": "ADDRESS"
                                 }
+                            },
+                            "contract_id": {
+                                "type": "bytes",
+                                "id": 6,
+                                "options": {
+                                    "(koinos.btype)": "BASE58"
+                                }
                             }
                         }
                     },
@@ -201,7 +208,10 @@
                             },
                             "contract_id": {
                                 "type": "bytes",
-                                "id": 2
+                                "id": 2,
+                                "options": {
+                                    "(koinos.btype)": "BASE58"
+                                }
                             }
                         }
                     },
@@ -220,7 +230,10 @@
                             },
                             "contract_id": {
                                 "type": "bytes",
-                                "id": 3
+                                "id": 3,
+                                "options": {
+                                    "(koinos.btype)": "BASE58"
+                                }
                             }
                         }
                     },

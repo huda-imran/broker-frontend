@@ -154,6 +154,7 @@ export const BorrowSection = () => {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
+          collateralAmount,
           amount: borrowAmount,
           tokenSymbol: selectedToken,
           borrowerAddress,
