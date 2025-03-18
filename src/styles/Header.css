@@ -5,7 +5,7 @@
     align-items: center;
     justify-content: space-between;
     padding: 10px 20px;
-    background-color: #2A2A2A;
+    background-color: #121826;
     /* Dark Gray */
     border-bottom: 1px solid var(--border-color);
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.6);
@@ -45,7 +45,7 @@
 .nav-link:hover {
     color: var(--accent-color);
     /* Highlight effect */
-    background-color: #3A3A3A;
+    background-color: #1E2538;
 }
 
 

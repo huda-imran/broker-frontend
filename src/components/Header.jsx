@@ -1,41 +1,58 @@
 import React, { useState, useEffect, useRef } from "react";
+import { ethers } from "ethers";
+import { useNavigate } from "react-router-dom"; // ✅ Import useNavigate
 import "../styles/Header.css";
-import * as kondor from "kondor-js";
 import { useWallet } from "../context/WalletContext"; // Import the Wallet context
 
-export const Header = ({ setActiveSection }) => {
-  const { account, setAccount } = useWallet(); // Get wallet state from context
+export const Header = () => {
+  const { account, setAccount, setNetwork } = useWallet(); // Get wallet state from context
   const [showDropdown, setShowDropdown] = useState(false); // Dropdown state
   const dropdownRef = useRef(null); // Ref for dropdown menu
   const adminWalletAddress = process.env.REACT_APP_ADMIN_WALLET; // Admin wallet from .env
+  const navigate = useNavigate(); // ✅ Use navigate to handle routing
 
-
-  // Handle wallet connection
   const connectWallet = async () => {
+    if (!window.ethereum) {
+      alert("MetaMask is not installed. Please install it to connect.");
+      return;
+    }
+  
     try {
-      const accounts = await kondor.getAccounts();
-      if (accounts.length === 0) {
-        alert("No accounts found in Kondor. Please create or import an account.");
+      const provider = new ethers.providers.Web3Provider(window.ethereum);
+      const accounts = await provider.send("wallet_requestPermissions", [
+        { eth_accounts: {} },
+      ]); // ✅ Reset permissions to force account selection
+  
+      const newAccounts = await provider.send("eth_requestAccounts", []);
+      const network = await provider.getNetwork(); // ✅ Get the current network
+      
+  
+      // ✅ Allow only Ethereum Mainnet & Sepolia
+      if (network.chainId !== 1 && network.chainId !== 11155111) {
+        alert("Please switch to Ethereum Mainnet or Sepolia to connect.");
         return;
       }
-      const walletAddress = accounts[0].address;
-      setAccount(walletAddress); // Store wallet address in global state
-      localStorage.setItem("connectedAccount", walletAddress); // Save to localStorage
-      console.log("Connected Account:", walletAddress);
+  
+      if (newAccounts.length > 0) {
+        setAccount(newAccounts[0]); // Save wallet address in state
+        setNetwork(network.name);
+        console.log(network.name);
+        localStorage.setItem("connectedAccount", newAccounts[0]); // Save to localStorage
+      }
     } catch (error) {
-      console.error("Failed to connect wallet:", error);
-      alert("Failed to connect wallet. Please try again.");
+      console.error("Wallet connection failed:", error);
     }
   };
+  
 
-  // Handle logout
+  // ✅ Handle Logout - Remove Wallet & Force Reconnect
   const handleLogout = () => {
     setAccount(null); // Clear the account from state
-    localStorage.removeItem("connectedAccount"); // Remove wallet address from localStorage
-    setShowDropdown(false); // Close the dropdown
+    localStorage.removeItem("connectedAccount"); // Remove from localStorage
+    setShowDropdown(false); // Close dropdown
   };
 
-  // Check for wallet connection on page load
+  // ✅ Check for existing wallet connection on page load
   useEffect(() => {
     const savedAccount = localStorage.getItem("connectedAccount");
     if (savedAccount) {
@@ -43,7 +60,7 @@ export const Header = ({ setActiveSection }) => {
     }
   }, [setAccount]);
 
-  // Close dropdown when clicking outside
+  // ✅ Close dropdown when clicking outside
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
@@ -58,23 +75,17 @@ export const Header = ({ setActiveSection }) => {
   return (
     <header className="header">
       {/* Logo */}
-      <div className="logo">
-        <h2>Koinos</h2>
+      <div className="logo" onClick={() => navigate("/")}>
+        <h2>DealGuard</h2>
       </div>
 
       {/* Navigation */}
       <nav className="nav-menu">
-        <span className="nav-link" onClick={() => setActiveSection("borrow")}>Borrow</span>
-        <span className="nav-link" onClick={() => setActiveSection("lend")}>Lend</span>
-        <span className="nav-link" onClick={() => setActiveSection("dashboard")}>Dashboard</span>
-        <span
-  className="nav-link"
-  onClick={() => setActiveSection("admin")}
-  style={{ display: account === adminWalletAddress ? "inline" : "none" }}
->
-  Admin Dashboard
-</span>
-
+        {account?.toLowerCase() === adminWalletAddress?.toLowerCase() && (
+          <span className="nav-link" onClick={() => navigate("/admin")}>
+            Admin Dashboard
+          </span>
+        )}
       </nav>
 
       {/* Wallet Dropdown */}
@@ -83,7 +94,7 @@ export const Header = ({ setActiveSection }) => {
           <>
             <button
               className="wallet-btn"
-              onClick={() => setShowDropdown((prev) => !prev)} // Toggle dropdown
+              onClick={() => setShowDropdown((prev) => !prev)}
             >
               {account.slice(0, 6)}...{account.slice(-4)}
             </button>

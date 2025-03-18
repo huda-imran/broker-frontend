@@ -1,287 +1,194 @@
 import React, { useState, useEffect } from "react";
 import "../styles/AdminScreen.css";
-import * as kondor from "kondor-js";
-import { Contract } from "koilib";
-import lendingAbi from "../utils/lendingAbi.json"; // Import your contract ABI
-import borrowAbi from "../utils/borrowAbi.json";
+import { ethers } from "ethers";
 import { useWallet } from "../context/WalletContext";
+import escrowAbi from "../utils/escrowAbi.json"; // Import Escrow Contract ABI
+import emailjs from "emailjs-com"; // Import EmailJS
 
 const AdminScreen = () => {
-  const [isLendingAllowed, setIsLendingAllowed] = useState(false); // Toggle for lenders
-  const [lendingRate, setLendingRate] = useState(null); // Default lending rate
-  const [borrowingRate, setBorrowingRate] = useState(null); // Default borrowing rate
-  const [newTokenAddress, setNewTokenAddress] = useState("");
-  const [tokens, setTokens] = useState([]); // Tokens fetched from backend
-  const { account } = useWallet();
-  // Fetch tokens from backend
-  useEffect(() => {
-    const fetchTokens = async () => {
-      try {
-        const response = await fetch(`${process.env.REACT_APP_API_BASE_URL}/token`);
-        if (!response.ok) {
-          throw new Error("Failed to fetch token data.");
-        }
-        const tokenData = await response.json();
-        setTokens(tokenData);
-      } catch (error) {
-        console.error("Error fetching tokens:", error);
-        alert("Failed to load token data.");
-      }
-    };
+  const { account, provider, network } = useWallet();
+  
+  // State for processing transactions
+  const [clientAddress, setClientAddress] = useState("");
+  const [brokerAddress, setBrokerAddress] = useState("");
+  const [selectedToken, setSelectedToken] = useState("");
+  const [amount, setAmount] = useState("");
+  const [fee, setFee] = useState("");
+  const [dealStatus, setDealStatus] = useState("complete"); // New dropdown state
+  const [processing, setProcessing] = useState(false);
 
-    fetchTokens();
+  // State for sending emails
+  const [email, setEmail] = useState("");
+  const [emailClientAddress, setEmailClientAddress] = useState("");
+  const [emailTokenType, setEmailTokenType] = useState("");
+  const [emailAmount, setEmailAmount] = useState("");
+  const [emailSending, setEmailSending] = useState(false);
+
+  const ESCROW_CONTRACT =
+  network === "sepolia"
+    ? process.env.REACT_APP_SEPOLIA_ESCROW_CONTRACT
+    : process.env.REACT_APP_MAINNET_ESCROW_CONTRACT;
+
+  const EMAILJS_SERVICE_ID = process.env.REACT_APP_SERVICE_ID;
+  const EMAILJS_TEMPLATE_ID = process.env.REACT_APP_TEMPLATE_ID;
+  const EMAILJS_PUBLIC_KEY = process.env.REACT_APP_PUBLIC_KEY;
+
+   const tokens =
+    network === "sepolia"
+      ? [
+          {
+            symbol: "Dummy WETH",
+            name: "Dummy Wrapped Ether",
+            address: "0xe1396cf53fe2628147F8E055Ad0629517b3aB405",
+            decimals: 18,
+          },
+        ]
+      : [
+          { symbol: "WETH", name: "Wrapped Ether", address: "0xC02aaA39b223FE8D0A0e5C4F27eaD9083C756Cc2", decimals: 18 },
+          { symbol: "DAI", name: "Dai Stablecoin", address: "0x6B175474E89094C44Da98b954EedeAC495271d0F", decimals: 18 },
+          { symbol: "USDT", name: "Tether USD", address: "0xdAC17F958D2ee523a2206206994597C13D831ec7", decimals: 6 },
+          { symbol: "USDC", name: "USD Coin", address: "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48", decimals: 6 },
+        ];
+
+  useEffect(() => {
+    if (tokens.length > 0) {
+      setSelectedToken(tokens[0].symbol); // Default token
+      setEmailTokenType(tokens[0].symbol); // Default token for email section
+    }
   }, []);
 
-  // Fetch blockchain-related data (paused state, lending rate, borrow rate)
-  useEffect(() => {
-  const fetchBlockchainData = async () => {
+  const processDeal = async () => {
+    if (!account || !clientAddress || !brokerAddress || !amount || !fee || !selectedToken) {
+      alert("Please fill in all fields!");
+      return;
+    }
+
+    const tokenData = tokens.find(t => t.symbol === selectedToken);
+    if (!tokenData) {
+      alert("Invalid token selected!");
+      return;
+    }
+
+    const amountWei = ethers.utils.parseUnits(amount, tokenData.decimals);
+    const feeWei = ethers.utils.parseUnits(fee, tokenData.decimals);
+    const isCompleted = dealStatus === "complete"; // Convert dropdown value to boolean
+
     try {
-      const lendingContractAddress = process.env.REACT_APP_LENDING_CONTRACT;
-      const borrowContractAddress = process.env.REACT_APP_BORROW_CONTRACT;
+      setProcessing(true);
+      const signer = provider.getSigner();
+      const escrowContract = new ethers.Contract(ESCROW_CONTRACT, escrowAbi, signer);
 
-      // Create contract instances
-      const lendingContract = new Contract({
-        id: lendingContractAddress,
-        abi: lendingAbi,
-        provider: kondor.getProvider(process.env.REACT_APP_PROVIDER),
-      });
+      const tx = await escrowContract.processDeal(clientAddress, brokerAddress, tokenData.address, amountWei, feeWei, isCompleted);
+      await tx.wait();
 
-      const borrowContract = new Contract({
-        id: borrowContractAddress,
-        abi: borrowAbi,
-        provider: kondor.getProvider(process.env.REACT_APP_PROVIDER),
-      });
-
-      // Fetch paused state
-      const { result: pausedState } = await lendingContract.functions.getPaused();
-      setIsLendingAllowed(!(pausedState?.value)); // Flip because `true` means paused
-
-      // Fetch current lending rate
-      const { result: lendingRateResult } = await lendingContract.functions.getLendingRate();
-      if (lendingRateResult?.value !== undefined) {
-        setLendingRate(parseInt(lendingRateResult.value));
-      }
-
-      // Fetch current borrowing rate
-      const { result: borrowRateResult } = await borrowContract.functions.getBorrowRate();
-      if (borrowRateResult?.value !== undefined) {
-        setBorrowingRate(parseInt(borrowRateResult.value));
-      }
-
+      alert("Deal processed successfully!");
     } catch (error) {
-      console.error("Error fetching blockchain data:", error);
-      alert("Failed to fetch blockchain data.");
+      console.error("Error processing deal:", error);
+      alert("Transaction failed!");
+    } finally {
+      setProcessing(false);
     }
   };
 
-  fetchBlockchainData();
-}, []);
-
-
-  const toggleLending = async () => {
-    try {
-      console.log(isLendingAllowed);
-      if (isLendingAllowed === null) return; // Prevent toggling if state is unknown
-      const newPausedState = !isLendingAllowed; // Flip the current state
-      setIsLendingAllowed(newPausedState); // Optimistically update UI
-      const adminAddress = account;
-      // Lending contract address from .env
-      const lendingContractAddress = process.env.REACT_APP_LENDING_CONTRACT;
-      // Contract instance
-      const lendingContract = new Contract({
-        id: lendingContractAddress,
-        abi: lendingAbi, // Ensure ABI is correctly imported
-        provider: kondor.getProvider(process.env.REACT_APP_PROVIDER),
-        signer: kondor.getSigner(adminAddress),
-      });
-
-  
-      // Call `setPaused` with the new value
-      const { transaction, receipt } = await lendingContract.functions.setPaused({
-        value: !newPausedState, // Flip because `true` means paused
-      });
-      console.log("receipt",receipt);
-      console.log("transaction", transaction);
-  
-      if (!receipt) {
-        throw new Error("Transaction failed");
-      }
-  
-      alert(`Lending ${newPausedState ? "resumed" : "paused"} successfully! TXID: ${transaction.id}`);
-    } catch (error) {
-      console.error("Error updating lending state:", error);
-      alert("Failed to update lending state. Check the console for details.");
-      setIsLendingAllowed(!isLendingAllowed); // Revert UI on failure
-    }
-  };
-
-  const updateLendingRate = async () => {
-    try {
-      const lendingContractAddress = process.env.REACT_APP_LENDING_CONTRACT;
-      const lendingContract = new Contract({
-        id: lendingContractAddress,
-        abi: lendingAbi,
-        provider: kondor.getProvider(process.env.REACT_APP_PROVIDER),
-        signer: kondor.getSigner(account),
-      });
-      const { transaction, receipt } = await lendingContract.functions.setLendingRate({
-        value: String(lendingRate),
-      });
-      if (!receipt) throw new Error("Transaction failed");
-      alert(`Lending Rate Updated! TXID: ${transaction.id}`);
-    } catch (error) {
-      console.error("Error updating lending rate:", error);
-      alert("Failed to update lending rate.");
-    }
-  };
-  const updateBorrowingRate = async () => {
-    try {
-      const accounts = await kondor.getAccounts();
-      if (!accounts || accounts.length === 0) {
-        alert("No accounts found. Please connect your wallet.");
-        return;
-      }
-  
-      const borrowContractAddress = process.env.REACT_APP_BORROW_CONTRACT;
-      const borrowContract = new Contract({
-        id: borrowContractAddress,
-        abi: borrowAbi,
-        provider: kondor.getProvider(process.env.REACT_APP_PROVIDER),
-        signer: kondor.getSigner(accounts[0].address),
-      });
-  
-      const { transaction, receipt } = await borrowContract.functions.setBorrowRate({
-        value: String(borrowingRate),
-      });
-  
-      if (!receipt) throw new Error("Transaction failed");
-  
-      alert(`Borrowing Rate Updated! TXID: ${transaction.id}`);
-    } catch (error) {
-      console.error("Error updating borrowing rate:", error);
-      alert("Failed to update borrowing rate.");
-    }
-  };
-
-
-  // Add New Token by Sending API Request
-  const addNewToken = async () => {
-    if (!newTokenAddress) {
-      alert("Please enter a valid token contract address.");
+  // Function to send approval email using EmailJS
+  const sendApprovalEmail = async () => {
+    if (!email || !emailClientAddress || !emailAmount || !emailTokenType) {
+      alert("Please fill in all fields!");
       return;
     }
 
     try {
-      const response = await fetch(`${process.env.REACT_APP_API_BASE_URL}/token`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ address: newTokenAddress }),
-      });
+      setEmailSending(true);
 
-      if (!response.ok) {
-        const errorData = await response.json();
-        throw new Error(errorData.error || "Failed to add token.");
-      }
+      const WEBSITE_URL = process.env.REACT_APP_WEBSITE_URL;
 
-      const result = await response.json();
-      setTokens([...tokens, result.token]); // Update state with new token
-      setNewTokenAddress(""); // Clear input
-      alert("Token added successfully!");
+      const approvalLink = `${WEBSITE_URL}/approval?client=${emailClientAddress}&token=${emailTokenType}&amount=${emailAmount}`;      const templateParams = {
+        from_name: "DealGuard Team",
+        client_address: emailClientAddress,
+        selected_token: emailTokenType,
+        amount: emailAmount,
+        approval_link: approvalLink,
+        email: email,
+      };
+
+      await emailjs.send(
+        EMAILJS_SERVICE_ID,
+        EMAILJS_TEMPLATE_ID,
+        templateParams,
+        EMAILJS_PUBLIC_KEY
+      );
+
+      alert("Approval email sent successfully!");
     } catch (error) {
-      console.error("Error adding token:", error);
-      alert(error.message);
+      console.error("Error sending email:", error);
+      alert("Email sending failed!");
+    } finally {
+      setEmailSending(false);
     }
   };
 
-
-
   return (
     <div className="admin-container">
-      <h1 className="section-title">Admin Panel</h1>
+      <h1 className="section-title">Admin - Deal Transactions</h1>
 
-      {/* Toggle Lending */}
-      <div className="admin-section">
-        <label>
-          <span>Allow New Lenders:</span>
-          <input
-            type="checkbox"
-            checked={isLendingAllowed}
-            onChange={toggleLending}
-          />
-        </label>
-      </div>
+      <div className="admin-sections-container">
+        {/* Deal Processing Form */}
+        <div className="admin-section">
+          <h2>Process Deal</h2>
+          <label>Client Address:</label>
+          <input type="text" value={clientAddress} onChange={(e) => setClientAddress(e.target.value)} placeholder="Enter client address" />
 
-      {/* Lending Rate Adjustment */}
-      <div className="admin-section">
-        <label>
-          <span>Lending Rate (ROI %):</span>
-          <input
-            type="number"
-            value={lendingRate}
-            onChange={(e) => setLendingRate(e.target.value)}
-          />
-          <button onClick={updateLendingRate}>Update</button> {/* Update Button */}
-        </label>
-      </div>
-          {/* Borrow Rate Section */}
+          <label>Broker Address:</label>
+          <input type="text" value={brokerAddress} onChange={(e) => setBrokerAddress(e.target.value)} placeholder="Enter broker address" />
 
-          <div className="admin-section">
-        <label>
-          <span>Global Borrowing Rate (%):</span>
-          <input
-            type="number"
-            value={borrowingRate}
-            onChange={(e) => setBorrowingRate(e.target.value)}
-          />
-          <button onClick={updateBorrowingRate}>Update</button> {/* Update Button */}
-        </label>
-      </div>
+          <label>Select Token:</label>
+          <select value={selectedToken} onChange={(e) => setSelectedToken(e.target.value)}>
+            {tokens.map((token) => (
+              <option key={token.address} value={token.symbol}>{token.symbol} - {token.name}</option>
+            ))}
+          </select>
 
-      {/* Add New Token */}
-      <div className="admin-section">
-        <label>
-          <span>New Collateral Token:</span>
-          <input
-            type="text"
-            value={newTokenAddress}
-            onChange={(e) => setNewTokenAddress(e.target.value)}
-            placeholder="Enter contract address"
-          />
-        </label>
-        <button onClick={addNewToken}>Add Token</button>
-      </div>
+          <label>Amount:</label>
+          <input type="number" value={amount} onChange={(e) => setAmount(e.target.value)} placeholder="Enter amount" />
 
+          <label>Fee:</label>
+          <input type="number" value={fee} onChange={(e) => setFee(e.target.value)} placeholder="Enter fee" />
 
+          <label>Deal Status:</label>
+          <select value={dealStatus} onChange={(e) => setDealStatus(e.target.value)}>
+            <option value="complete">Complete</option>
+            <option value="refund">Refund</option>
+          </select>
 
-{/* Existing Tokens Display */}
-<div className="admin-section">
-  <h2>Added Tokens</h2>
-  {tokens.length === 0 ? (
-    <p>No tokens available.</p>
-  ) : (
-    <table className="token-table">
-      <thead>
-        <tr>
-          <th>Token Name</th>
-          <th>Symbol</th>
-          <th>Contract Address</th>
-        </tr>
-      </thead>
-      <tbody>
-        {tokens.map((token, index) => (
-          <tr key={index}>
-            <td>{token.name}</td>
-            <td>{token.symbol}</td>
-            <td>{token.address.slice(0, 6)}...{token.address.slice(-4)}</td>
-          </tr>
-        ))}
-      </tbody>
-    </table>
-  )}
-</div>
+          <button className="submit-button" onClick={processDeal} disabled={processing}>
+            {processing ? "Processing..." : "Process Deal"}
+          </button>
+        </div>
 
+        {/* Email Sending Form */}
+        <div className="admin-section">
+          <h2>Send Approval Email</h2>
+          <label>Recipient Email:</label>
+          <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Enter recipient's email" />
+
+          <label>Client Address:</label>
+          <input type="text" value={emailClientAddress} onChange={(e) => setEmailClientAddress(e.target.value)} placeholder="Enter client address" />
+
+          <label>Select Token:</label>
+          <select value={emailTokenType} onChange={(e) => setEmailTokenType(e.target.value)}>
+            {tokens.map((token) => (
+              <option key={token.address} value={token.symbol}>{token.symbol} - {token.name}</option>
+            ))}
+          </select>
+
+          <label>Amount:</label>
+          <input type="number" value={emailAmount} onChange={(e) => setEmailAmount(e.target.value)} placeholder="Enter amount" />
+
+          <button className="submit-button" onClick={sendApprovalEmail} disabled={emailSending}>
+            {emailSending ? "Sending..." : "Send Approval Request"}
+          </button>
+        </div>
+        </div>
     </div>
   );
 };

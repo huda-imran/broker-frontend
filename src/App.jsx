@@ -1,59 +1,71 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import "./styles/App.css";
 import { Header } from "./components/Header";
 import { Footer } from "./components/Footer";
-import { BorrowSection } from "./components/BorrowSection";
-import { LendSection } from "./components/LendSection";
-import DashboardSection from "./components/DashboardSection";
+import { ApprovalSection } from "./components/ApprovalSection";
 import AdminScreen from "./components/AdminScreen";
 import { WalletProvider, useWallet } from "./context/WalletContext";
 
-const App = () => {
-  const [activeSection, setActiveSection] = useState("lend"); // State for section navigation
-  const { account } = useWallet(); // Get wallet state from context
-  const [isAdmin, setIsAdmin] = useState(false); // Track if the user is an admin
+// ✅ Page Layout with Header & Footer (For Main Pages)
+const PageLayout = ({ children }) => (
+  <div className="app-container">
+    <Header />
+    <main className="main-content">{children}</main>
+    <Footer />
+  </div>
+);
 
-  // Admin wallet address (add to `.env`)
+// ✅ Admin Panel Page (Only for Admin)
+const Admin = () => {
+  const { account } = useWallet();
   const adminWalletAddress = process.env.REACT_APP_ADMIN_WALLET;
 
-  // Check if the connected wallet is the admin wallet
-  useEffect(() => {
-    if (account && adminWalletAddress) {
-      setIsAdmin(account === adminWalletAddress); // Check if the wallet matches the admin's wallet
-    } else {
-      setIsAdmin(false);
-    }
-  }, [account, adminWalletAddress]);
-
-  // Redirect to connect wallet if no account is connected
-  if (!account) {
+  // ✅ If Admin Wallet is Not Connected, Show Message
+  if (!account || account.toLowerCase() !== adminWalletAddress?.toLowerCase()) {
     return (
-      <div className="app-container">
-      <Header setActiveSection={setActiveSection} />
-        <div className="connect-wallet-container">
-          <h1>Welcome to Koinos</h1>
-          <p>Please connect your wallet to use the application.</p>
+      <PageLayout>
+        <div className="non-admin-message">
+          <h2>Access Denied</h2>
+          <p>You are not connected with the Admin wallet.</p>
         </div>
-        <Footer />
-      </div>
-      
+      </PageLayout>
     );
   }
 
   return (
-    <div className="app-container">
-      <Header setActiveSection={setActiveSection} />
-      <main className="main-content">
-        {activeSection === "borrow" && <BorrowSection />}
-        {activeSection === "lend" && <LendSection />}
-        {activeSection === "dashboard" && <DashboardSection />}
-        {isAdmin && activeSection === "admin" && <AdminScreen />}
-      </main>
-      <Footer />
-    </div>
+    <PageLayout>
+      <AdminScreen />
+    </PageLayout>
   );
 };
 
+// ✅ Main App Component
+const App = () => {
+  return (
+    <Router>
+      <Routes>
+        {/* ✅ Admin Route (Only Admins can access) */}
+        <Route path="/admin" element={<Admin />} />
+
+        {/* ✅ Approval Page (Separate Page) */}
+        <Route
+          path="/approval"
+          element={
+            <PageLayout>
+              <ApprovalSection />
+            </PageLayout>
+          }
+        />
+
+        {/* ✅ Default Route Redirects to Admin Page */}
+        <Route path="/" element={<Admin />} />
+      </Routes>
+    </Router>
+  );
+};
+
+// ✅ Export App Wrapped with WalletProvider
 export default () => (
   <WalletProvider>
     <App />

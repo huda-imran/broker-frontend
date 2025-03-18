@@ -1,14 +1,43 @@
-/* Admin Container */
+/* Admin Panel Container */
 
 .admin-container {
-    background-color: #2E2E2E;
-    padding: 25px;
-    border-radius: 10px;
+    background-color: #121826;
+    padding: 30px;
+    border-radius: 12px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.7);
-    max-width: 800px;
-    width: 100%;
+    max-width: 1000px;
+    width: 90%;
     margin: 20px auto;
     color: var(--text-color);
+}
+
+
+/* Parent container for sections */
+
+.admin-sections-container {
+    display: flex;
+    flex-wrap: wrap;
+    /* Ensures wrapping on smaller screens */
+    gap: 20px;
+    justify-content: space-between;
+    width: 100%;
+}
+
+
+/* Individual Admin Sections */
+
+.admin-section {
+    flex: 1;
+    min-width: 400px;
+    /* Ensure sections remain aligned */
+    max-width: 480px;
+    /* Make sections the same size */
+    background-color: #1E2538;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.4);
+    display: flex;
+    flex-direction: column;
 }
 
 
@@ -17,80 +46,80 @@
 .section-title {
     font-size: 24px;
     font-weight: bold;
-    margin-bottom: 20px;
+    margin-bottom: 25px;
+    text-align: center;
 }
 
 
-/* Admin Section */
-
-.admin-section {
-    margin-bottom: 20px;
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: space-between;
-    gap: 15px;
-}
+/* Labels & Inputs */
 
 .admin-section label {
-    flex: 1;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    color: var(--secondary-text-color);
-}
-
-.admin-section input[type="text"],
-.admin-section input[type="number"] {
-    flex: 1;
-    padding: 8px;
     font-size: 16px;
+    color: var(--secondary-text-color);
+    font-weight: 500;
+    margin-bottom: 5px;
+}
+
+
+/* Input Fields & Dropdown */
+
+.admin-section input,
+.admin-section select {
+    background-color: #252E42;
+    color: #fff;
     border: 1px solid var(--border-color);
+    padding: 10px;
+    /* Adjust padding for better input height */
+    font-size: 16px;
     border-radius: 6px;
-    background-color: #3A3A3A;
-    color: var(--text-color);
-    margin-left: 10px;
-    margin-right: 10px;
-}
-
-.admin-section input[type="checkbox"] {
-    margin-left: 10px;
+    width: 95%;
+    /* Ensures input fits within section */
+    margin-bottom: 15px;
 }
 
 
-/* Add Token Button */
+/* Button Styling */
 
-button {
-    padding: 8px 16px;
-    font-size: 14px;
+.submit-button {
+    padding: 12px;
+    font-size: 16px;
     background-color: var(--accent-color);
     color: var(--text-color);
     border: none;
     border-radius: 6px;
     cursor: pointer;
     transition: all 0.3s ease-in-out;
-}
-
-button:hover {
-    background-color: var(--hover-accent-color);
-    box-shadow: 0 0 8px rgba(16, 163, 127, 0.6);
-}
-
-
-/* Token Table */
-
-.token-table {
     width: 100%;
-    border-collapse: collapse;
-}
-
-.token-table th,
-.token-table td {
-    padding: 10px;
-    border: 1px solid var(--border-color);
     text-align: center;
 }
 
-.token-table th {
-    background-color: #3A3A3A;
+.submit-button:hover {
+    background-color: var(--hover-accent-color);
+    box-shadow: 0 0 12px rgba(16, 163, 127, 0.8);
+}
+
+
+/* Responsive Fix */
+
+@media (max-width: 768px) {
+    .admin-sections-container {
+        flex-direction: column;
+        align-items: center;
+    }
+    .admin-section {
+        width: 90%;
+        max-width: 400px;
+    }
+}
+
+
+/* Fix the stretched button */
+
+button {
+    width: fit-content;
+    padding: 10px 20px;
+    background-color: transparent;
+    /* Match background */
+    color: var(--accent-color);
+    border: 1px solid var(--accent-color);
 }

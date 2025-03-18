@@ -73,3 +73,20 @@ footer {
     padding: 10px 0;
     border-top: 1px solid var(--border-color);
 }
+
+.non-admin-message {
+    text-align: center;
+    padding: 50px;
+    color: var(--text-color);
+}
+
+.non-admin-message h2 {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.non-admin-message p {
+    font-size: 18px;
+    color: var(--secondary-text-color);
+}

@@ -9,9 +9,11 @@ export const useWallet = () => useContext(WalletContext);
 // Wallet Provider Component
 export const WalletProvider = ({ children }) => {
   const [account, setAccount] = useState(null);
+  const [network, setNetwork] = useState(null);
+  
 
   return (
-    <WalletContext.Provider value={{ account, setAccount }}>
+    <WalletContext.Provider value={{ account, setAccount, network, setNetwork }}>
       {children}
     </WalletContext.Provider>
   );

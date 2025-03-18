@@ -1,18 +1,15 @@
 /* General Container */
 
-.borrow-container {
+.approval-container {
     display: flex;
     flex-direction: column;
-    background-color: #2E2E2E;
-    /* Slightly lighter gray */
+    background-color: #121826;
     padding: 25px;
     border-radius: 10px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.7);
-    /* Softer shadow */
     max-width: 600px;
     width: 100%;
     margin: 20px auto;
-    /* Centered */
     color: var(--text-color);
 }
 
@@ -24,7 +21,6 @@
     font-weight: bold;
     margin-bottom: 20px;
     color: var(--text-color);
-    /* Lighter text */
 }
 
 
@@ -51,43 +47,100 @@
     font-size: 16px;
     border-radius: 6px;
     border: 1px solid var(--border-color);
-    background-color: #3A3A3A;
-    /* Slightly darker inputs */
+    background-color: #1E2538;
     color: var(--text-color);
-    /* Light text */
     transition: all 0.3s ease-in-out;
 }
 
 .input-group input:focus,
 .input-group select:focus {
     border-color: var(--accent-color);
-    /* Highlight border */
     outline: none;
     box-shadow: 0 0 8px rgba(16, 163, 127, 0.6);
-    /* Subtle glow */
 }
 
 
-/* Submit Button */
+/* Approve Button */
 
-.borrow-btn {
+.approve-btn {
+    width: 100%;
+    /* Ensures uniform width */
+    max-width: 200px;
+    /* Prevents excessive stretching */
+    height: 45px;
+    /* Fixed height */
     padding: 12px;
     font-size: 16px;
     background-color: var(--accent-color);
-    /* Teal color */
     color: var(--text-color);
     border: none;
     border-radius: 6px;
     cursor: pointer;
     transition: all 0.3s ease-in-out;
     margin-top: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    text-align: center;
 }
 
-.borrow-btn:hover {
+
+/* Center the button */
+
+.approve-btn-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+
+/* Button Hover */
+
+.approve-btn:hover {
     background-color: var(--hover-accent-color);
-    /* Slightly lighter teal */
     box-shadow: 0 0 12px rgba(16, 163, 127, 0.8);
-    /* Stronger glow effect */
+}
+
+
+/* Loader inside button */
+
+.approve-btn.loading {
+    background-color: var(--accent-color);
+    cursor: not-allowed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+/* Keep button text space even when loading */
+
+.approve-btn.loading span {
+    visibility: hidden;
+}
+
+
+/* Loader */
+
+.loader {
+    width: 20px;
+    height: 20px;
+    border: 3px solid rgba(255, 255, 255, 0.3);
+    border-top-color: white;
+    border-radius: 50%;
+    animation: spin 0.6s linear infinite;
+    position: absolute;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
 }
 
 
@@ -96,44 +149,13 @@
 .info-box {
     margin-top: 20px;
     padding: 15px;
-    background-color: #3A3A3A;
-    /* Dark box */
+    background-color: #1E2538;
     border-radius: 6px;
     border-left: 4px solid var(--accent-color);
-    /* Accent border */
 }
 
 .info-box p {
     margin: 5px 0;
     font-size: 14px;
     color: var(--secondary-text-color);
-}
-
-
-/* Responsive Design */
-
-@media (max-width: 768px) {
-    .borrow-container {
-        width: 100%;
-        padding: 15px;
-    }
-    .section-title {
-        font-size: 20px;
-    }
-    .borrow-btn {
-        font-size: 14px;
-    }
-}
-
-@media (max-width: 768px) {
-    .borrow-container {
-        width: 100%;
-        padding: 15px;
-    }
-    .section-title {
-        font-size: 20px;
-    }
-    .borrow-btn {
-        font-size: 14px;
-    }
 }
