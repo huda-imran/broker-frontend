@@ -5,7 +5,7 @@ import "../styles/Header.css";
 import { useWallet } from "../context/WalletContext"; // Import the Wallet context
 
 export const Header = () => {
-  const { account, setAccount, setNetwork } = useWallet(); // Get wallet state from context
+  const { account, setAccount, network, setNetwork } = useWallet(); // Get wallet state from context
   const [showDropdown, setShowDropdown] = useState(false); // Dropdown state
   const dropdownRef = useRef(null); // Ref for dropdown menu
   const adminWalletAddress = process.env.REACT_APP_ADMIN_WALLET; // Admin wallet from .env
