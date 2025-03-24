@@ -38,7 +38,7 @@ const AdminScreen = () => {
   if (network === "sepolia") {
     return [
       {
-        symbol: "Dummy WETH",
+        symbol: "WETH",
         name: "Dummy Wrapped Ether",
         address: "0xe1396cf53fe2628147F8E055Ad0629517b3aB405",
         decimals: 18,
