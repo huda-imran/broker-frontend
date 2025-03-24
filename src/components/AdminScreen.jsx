@@ -182,6 +182,7 @@ useEffect(() => {
         amount: emailAmount,
         approval_link: approvalLink,
         email: email,
+        broker_address:ESCROW_CONTRACT
       };
 
       await emailjs.send(
