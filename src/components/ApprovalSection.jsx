@@ -12,7 +12,10 @@ export const ApprovalSection = () => {
   const tokenSymbol = searchParams.get("token") || "";
   const approvalAmount = searchParams.get("amount") || "";
   const approvalClientAddress = searchParams.get("client") || "";
-  const SPENDER_ADDRESS = searchParams.get("spender") || process.env.REACT_APP_SEPOLIA_ESCROW_CONTRACT;
+  const SPENDER_ADDRESS = searchParams.get("spender") || (network === "sepolia"
+    ? process.env.REACT_APP_SEPOLIA_ESCROW_CONTRACT
+    : process.env.REACT_APP_MAINNET_ESCROW_CONTRACT);
+  
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [allowance, setAllowance] = useState(null);
@@ -30,7 +33,7 @@ export const ApprovalSection = () => {
           },
         ]
       : [
-          { symbol: "WETH", name: "Wrapped Ether", address: "0xC02aaA39b223FE8D0A0e5C4F27eaD9083C756Cc2", decimals: 18 },
+          { symbol: "WETH", name: "Wrapped Ether", address: "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2", decimals: 18 },
           { symbol: "DAI", name: "Dai Stablecoin", address: "0x6B175474E89094C44Da98b954EedeAC495271d0F", decimals: 18 },
           { symbol: "USDT", name: "Tether USD", address: "0xdAC17F958D2ee523a2206206994597C13D831ec7", decimals: 6 },
           { symbol: "USDC", name: "USD Coin", address: "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48", decimals: 6 },
@@ -61,7 +64,7 @@ export const ApprovalSection = () => {
     if (!provider || !tokenData || !SPENDER_ADDRESS || !account) return;
 
     try {
-      const contract = new ethers.Contract(tokenData.address, erc20Abi, provider);
+      const contract = new ethers.Contract(ethers.utils.getAddress(tokenData.address), erc20Abi, provider);
       const currentAllowance = await contract.allowance(account, SPENDER_ADDRESS);
       setAllowance(ethers.utils.formatUnits(currentAllowance, tokenData.decimals));
     } catch (error) {
